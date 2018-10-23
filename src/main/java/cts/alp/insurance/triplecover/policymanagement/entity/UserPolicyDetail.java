@@ -92,7 +92,6 @@ public class UserPolicyDetail {
                 ", endDate=" + endDate +
                 ", userId=" + userId +
                 ", user=" + user +
-                ", availablePolicy=" + availablePolicy +
                 '}';
     }
 }

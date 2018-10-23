@@ -40,13 +40,16 @@ public class User {
     private String email;
     private String password;
 
+    public List<UserPolicyDetail> getUserPolicyDetails() {
+        return userPolicyDetails;
+    }
+
+
+
     // For mapping ending with Many, LAZY is the default fetch type
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<UserPolicyDetail>userPolicyDetails = new ArrayList<>();
 
-    public List<UserPolicyDetail> getUserPolicyDetails() {
-        return userPolicyDetails;
-    }
 
     public void addUserPolicy(UserPolicyDetail userPolicyDetail) {
         this.userPolicyDetails.add(userPolicyDetail) ;
