@@ -1,7 +1,7 @@
 package cts.alp.insurance.triplecover.policymanagement.repository;
 
+import cts.alp.insurance.triplecover.policymanagement.entity.Policy;
 import cts.alp.insurance.triplecover.policymanagement.entity.User;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,8 +44,17 @@ public class UserJPARepositoryTest {
         Boolean result = userOptional.isPresent();
         logger.info("{} ",result);
         assertTrue(result);
+    }
 
+    @Test
+    @Transactional
+    public void findByEmail() {
+        User user = userJPARepository.findByEmail("roger@roger.com");
+        List<Policy> userPolicyDetails = user.getPolicies();
 
+        for (Policy policy:userPolicyDetails) {
+            logger.info(" policy detail {}", policy);
+        }
 
     }
 }

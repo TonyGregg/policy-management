@@ -12,4 +12,6 @@ import java.util.List;
 public interface UserJPARepository extends JpaRepository<User, Long> {
     List<User> findByFirstName(String firstName);
     List<User> findByUserId(String userId); // Get all the users matching given userId
+
+    User findByEmail(String email);
 }
