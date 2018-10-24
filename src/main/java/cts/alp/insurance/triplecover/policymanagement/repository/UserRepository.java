@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Antony Genil Gregory on 10/21/2018 9:48 PM
  * For project : policy-management
  **/
-public interface UserJPARepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByFirstName(String firstName);
     List<User> findByUserId(String userId); // Get all the users matching given userId
 

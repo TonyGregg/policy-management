@@ -47,6 +47,7 @@ public class User {
         return policies;
     }
 
+
     public void setPolicies(List<Policy> policies) {
         this.policies = policies;
     }
