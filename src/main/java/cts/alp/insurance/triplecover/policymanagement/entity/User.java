@@ -2,6 +2,8 @@ package cts.alp.insurance.triplecover.policymanagement.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @Entity(name = "User") // referrred in queries and everywhere else
 @Table(name = "Users") // Name of the table in DB
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -122,18 +125,18 @@ public class User {
 
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", userId='" + userId + '\'' +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", birthDate=" + birthDate +
+//                ", address='" + address + '\'' +
+//                ", contactNumber='" + contactNumber + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                '}';
+//    }
 }
