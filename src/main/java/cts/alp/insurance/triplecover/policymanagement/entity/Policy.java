@@ -70,16 +70,16 @@ public class Policy {
     @Column(name = "detailed_name")
     private String detailedName;
 
-//    @Override
-//    public String toString() {
-//        return "Policy{" +
-//                "id=" + id +
-//                ", policyName='" + policyName + '\'' +
-//                ", amountPaid=" + amountPaid +
-//                ", policyEndDate=" + policyEndDate +
-//                ", detailedName='" + detailedName + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Policy{" +
+                "id=" + id +
+                ", policyName='" + policyName + '\'' +
+                ", amountPaid=" + amountPaid +
+                ", policyEndDate=" + policyEndDate +
+                ", detailedName='" + detailedName + '\'' +
+                '}';
+    }
 
 
     @ManyToOne
