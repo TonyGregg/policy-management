@@ -26,7 +26,7 @@ public class PolicyRepositoryTest {
 
     @Test
     public void getAllPolicies() {
-        List<Policy> policies = policyRepository.getAllPolicies();
+        List<Policy> policies = policyRepository.findAll();
 
         assertNotNull(policies);
         for (Policy policy:policies) {

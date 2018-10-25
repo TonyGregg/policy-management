@@ -17,30 +17,27 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 /**
- * Created by Antony Genil Gregory on 10/21/2018 9:54 PM
+ * Created by Antony Genil Gregory on 10/24/2018 9:12 PM
  * For project : policy-management
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserJPARepositoryTest {
+public class UserRepositoryTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private UserJPARepository userJPARepository;
 
-//    @Before
-//    public void setUp() throws Exception {
-//
-//    }
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     public void findByFirstName() {
-        List<User> userList = userJPARepository.findByFirstName("antony");
+        List<User> userList = userRepository.findByFirstName("antony");
         logger.info("Find by first name {} ",userList);
     }
 
     @Test
     public void findByUserId() {
-        Optional<User> userOptional = userJPARepository.findById(2L);
+
+        Optional<User> userOptional = userRepository.findById(2L);
         Boolean result = userOptional.isPresent();
         logger.info("{} ",result);
         assertTrue(result);
@@ -49,12 +46,11 @@ public class UserJPARepositoryTest {
     @Test
     @Transactional
     public void findByEmail() {
-        User user = userJPARepository.findByEmail("roger@roger.com");
-        List<Policy> userPolicyDetails = user.getPolicies();
+        User user = userRepository.findByEmail("roger@roger.com");
+        List<Policy> policies = user.getPolicies();
 
-        for (Policy policy:userPolicyDetails) {
+        for (Policy policy:policies) {
             logger.info(" policy detail {}", policy);
         }
-
     }
 }

@@ -84,8 +84,9 @@ INSERT INTO policies values(18,'RogerHandPolicy','Hand insurance policy',4,5600,
 
 
 select * 
-from users
-WHERE 1=1;
+from policies
+WHERE 1=1
+order by user_id;
 
 
 
