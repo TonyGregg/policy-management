@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by Antony Genil Gregory on 10/23/2018 9:17 PM
@@ -12,20 +13,22 @@ import java.time.LocalDate;
  **/
 @Entity
 @Table(name = "policies")
-@JsonIgnoreProperties("user")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Policy {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "policy_name")
     private String policyName;
 
-    @Column(name = "amount_paid")
-    private Double amountPaid;
+    @Column(name = "detailed_name")
+    private String detailedName;
 
-    @Column(name = "policy_end_date")
-    private LocalDate policyEndDate;
+    @OneToMany(mappedBy = "policy")
+    private List<UserPolicy> userPolicies;
 
     public String getPolicyName() {
         return policyName;
@@ -35,21 +38,6 @@ public class Policy {
         this.policyName = policyName;
     }
 
-    public Double getAmountPaid() {
-        return amountPaid;
-    }
-
-    public void setAmountPaid(Double amountPaid) {
-        this.amountPaid = amountPaid;
-    }
-
-    public LocalDate getPolicyEndDate() {
-        return policyEndDate;
-    }
-
-    public void setPolicyEndDate(LocalDate policyEndDate) {
-        this.policyEndDate = policyEndDate;
-    }
 
     public String getDetailedName() {
         return detailedName;
@@ -58,32 +46,27 @@ public class Policy {
     public void setDetailedName(String detailedName) {
         this.detailedName = detailedName;
     }
-//    @JsonIgnore
-    public User getUser() {
-        return user;
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setId(Long id) {
+        this.id = id;
     }
-
-    @Column(name = "detailed_name")
-    private String detailedName;
 
     @Override
     public String toString() {
         return "Policy{" +
                 "id=" + id +
                 ", policyName='" + policyName + '\'' +
-                ", amountPaid=" + amountPaid +
-                ", policyEndDate=" + policyEndDate +
                 ", detailedName='" + detailedName + '\'' +
                 '}';
     }
 
 
-    @ManyToOne
-    private User user;
+
 
 
 }

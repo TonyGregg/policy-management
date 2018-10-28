@@ -5,11 +5,10 @@ import cts.alp.insurance.triplecover.policymanagement.repository.PolicyRepositor
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,8 +68,20 @@ public class PolicyController {
      * @return the policy queries
      */
     @GetMapping("/{id}")
-    public Policy get(@PathVariable("id") long id) {
+    public Policy findById(@PathVariable("id") long id) {
         return policyRepository.getOne(id);
     }
+
+    /**
+     * Save policy
+     */
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody @Valid Policy policy) {
+        policyRepository.save(policy);
+    }
+
+
 
 }

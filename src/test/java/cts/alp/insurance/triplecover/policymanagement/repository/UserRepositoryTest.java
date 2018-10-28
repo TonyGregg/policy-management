@@ -8,9 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,25 +34,38 @@ public class UserRepositoryTest {
     public void findByFirstName() {
         List<User> userList = userRepository.findByFirstName("antony");
         logger.info("Find by first name {} ",userList);
+        assertTrue(userList.size()>0);
     }
 
     @Test
     public void findByUserId() {
 
-        Optional<User> userOptional = userRepository.findById(2L);
-        Boolean result = userOptional.isPresent();
-        logger.info("{} ",result);
-        assertTrue(result);
+        User user = userRepository.findByUserId("Wawrinka0208");
+        logger.info("{} ",user);
+        assertTrue(user.getId().intValue()==7);
     }
 
     @Test
-    @Transactional
     public void findByEmail() {
         User user = userRepository.findByEmail("roger@roger.com");
-        List<Policy> policies = user.getPolicies();
+        logger.info("{}", user);
+        assertTrue(user.getLastName().equalsIgnoreCase("Federer"));
+    }
 
-        for (Policy policy:policies) {
-            logger.info(" policy detail {}", policy);
-        }
+    @Test
+    @Rollback(true)
+    public void createUser() {
+        User user = new User();
+        user.setUserId("test0101");
+        user.setFirstName("Tester first name");
+        user.setLastName("Tester Last name");
+        user.setBirthDate(LocalDate.of(1981,10,25));
+        user.setAddress("tester street, tester city, tester state, 10001");
+        user.setContactNumber("+1 222-333-4444");
+        user.setEmail("tester123@testers.com");
+        user.setPassword("123-433p2d-");
+        user = userRepository.save(user);
+        assertNotNull(user);
+
     }
 }

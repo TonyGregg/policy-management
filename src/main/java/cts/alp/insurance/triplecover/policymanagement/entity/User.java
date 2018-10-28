@@ -19,8 +19,10 @@ import java.util.List;
 @Table(name = "Users") // Name of the table in DB
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "user_id")
 
@@ -44,16 +46,8 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Policy> policies;
+    private List<UserPolicy> userPolicies;
 
-    public List<Policy> getPolicies() {
-        return policies;
-    }
-
-
-    public void setPolicies(List<Policy> policies) {
-        this.policies = policies;
-    }
 
     public Long getId() {
         return id;

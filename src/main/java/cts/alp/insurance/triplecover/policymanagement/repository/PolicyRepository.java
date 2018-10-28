@@ -11,4 +11,6 @@ import java.util.List;
 public interface PolicyRepository extends JpaRepository<Policy,Long> {
 
     public Policy findByPolicyName(String policyName);
+    public List<Policy> findAll();
+    public Policy save(Policy policy);
 }
