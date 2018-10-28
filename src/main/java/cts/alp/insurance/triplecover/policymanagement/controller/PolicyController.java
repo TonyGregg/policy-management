@@ -26,7 +26,7 @@ public class PolicyController {
 
 
     /**
-     *
+     * http://localhost:8090/api/v1/3cover/policies/all
      * @return all policies for the admin
      */
     @GetMapping("/all")
@@ -63,7 +63,7 @@ public class PolicyController {
     };
 
     /**
-     *
+     * http://localhost:8090/api/v1/3cover/policies/6
      * @param id - of one policy
      * @return the policy queries
      */
@@ -76,10 +76,23 @@ public class PolicyController {
      * Save policy
      */
 
+    /**
+     * Save a policy
+     * @param policy
+     * @return saved policy
+     *{
+     *     "id": 26,
+     *     "policyName": "NotJustLandTest2 2",
+     *     "detailedName": "2 22Test ..Policy For Boats and Ships"
+     * }
+     * POST
+     * http://localhost:8090/api/v1/3cover/policies/
+     */
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody @Valid Policy policy) {
-        policyRepository.save(policy);
+    public Policy save(@RequestBody @Valid Policy policy) {
+        return policyRepository.save(policy);
     }
 
 
