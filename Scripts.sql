@@ -39,6 +39,8 @@ from users
 WHERE 1=1;
 
 
+
+
 ------------------------------------------------------------------------------------------------------------------------------------------------
 -- INSERT..
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,6 +132,13 @@ WHERE 1=1
 AND up.user_id = u.id
 AND up.policy_id = p.id
 and up.user_id =7;
+
+select up.id, p.policy_name, up.amount_paid, up.policy_end_date, u.first_name
+from user_policies up, users u, policies p
+WHERE 1=1
+AND up.user_id = u.id
+AND up.policy_id = p.id
+and up.user_id =1;
 
 
 

@@ -14,4 +14,6 @@ public interface UserPolicyRepository  extends JpaRepository<UserPolicy,Long> {
     @Query("select up from UserPolicy up where up.userId=?1")
     List<UserPolicy> findByUser(Long userId);
 
+    UserPolicy save(UserPolicy userPolicy);
+
 }
