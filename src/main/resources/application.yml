@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driverClassName:  com.mysql.jdbc.Driver
+    url:  jdbc:mysql://10.0.0.7:3306/healthapp
+    userName:   developer
+    password: Thirra1401!
+
+server:
+  port:8090
+
+adminUserName:  Admin
+adminPassword:  Admin
+userNotRegisteredMsg: You are not a registered User. Register to login.
+adminErrorMsg:  Contact Admin Service.
+userPasswordOrIdIncorrectMsg: User ID or Password is incorrect. Plese try agin.
