@@ -43,6 +43,22 @@ public class UserController {
     }
 
     /**
+     * Example
+     * http://localhost:8090/api/v1/3cover/users/userid/Roger0915
+     * @param userId
+     * @return
+     */
+
+    @RequestMapping("/userid/{userId}")
+    public User getOneUserByUserId(@PathVariable(value = "userId")String userId) {
+        logger.info("User Id passed "+userId);
+        User user = userRepository.findByUserId(userId);
+        logger.info("User {}",user);
+        return user;
+
+    }
+
+    /**
      * Postman URL http://localhost:8090/api/v1/3cover/users/all
      * @return all users...
      */
