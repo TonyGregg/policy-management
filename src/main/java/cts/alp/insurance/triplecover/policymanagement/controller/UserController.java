@@ -1,5 +1,6 @@
 package cts.alp.insurance.triplecover.policymanagement.controller;
 
+import cts.alp.insurance.triplecover.policymanagement.config.TripleCoverConfig;
 import cts.alp.insurance.triplecover.policymanagement.entity.User;
 import cts.alp.insurance.triplecover.policymanagement.entity.UserPolicy;
 import cts.alp.insurance.triplecover.policymanagement.repository.UserPolicyRepository;
@@ -24,6 +25,9 @@ public class UserController {
     UserRepository userRepository;
     @Autowired
     UserPolicyRepository userPolicyRepository;
+
+    @Autowired
+    TripleCoverConfig tripleCoverConfig;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -52,6 +56,14 @@ public class UserController {
     @RequestMapping("/userid/{userId}")
     public User getOneUserByUserId(@PathVariable(value = "userId")String userId) {
         logger.info("User Id passed "+userId);
+        if(tripleCoverConfig.getAdminUserName().equals(userId)) {
+            User user = new User();
+            user.setUserId(userId);
+            user.setPassword(userId);
+            user.setFirstName(userId);
+            user.setLastName(userId);
+            return user;
+        }
         User user = userRepository.findByUserId(userId);
         logger.info("User {}",user);
         return user;
