@@ -27,6 +27,9 @@ public class UserPolicy {
     @Column(name = "policy_end_date")
     private LocalDate policyEndDate;
 
+    @Transient
+    private String valid;
+
     @ManyToOne
     private User user;
 
@@ -93,6 +96,21 @@ public class UserPolicy {
                 ", policyEndDate=" + policyEndDate +
                 ", user=" + user +
                 ", policy=" + policy +
+                ", valid=" + this.getValid() +
                 '}';
+    }
+
+    /**
+     *
+     * @return "Yes" if the policy end date is before or equals today, "No" otherwise.
+     *
+     */
+    public String getValid() {
+        return this.policyEndDate.isAfter(LocalDate.now())  ? "Yes"
+                : "No";
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }
